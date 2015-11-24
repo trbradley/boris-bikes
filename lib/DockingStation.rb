@@ -5,10 +5,8 @@ class DockingStation
   attr_accessor :docked
 
   def release_bike
-    if @docked == ''
-      raise 'No bikes available!'
-    end
-    Bike.new
+    fail 'No bikes available!' unless @docked
+    @docked
   end
 
   def dock(bike)
