@@ -16,7 +16,12 @@ describe DockingStation do
      station = DockingStation.new
      expect(station.bike).to eq nil
    end
-#     expect(subject.dock(bike)).to eq bike
-#   end
+
+   it "tells us what's in the docking station when it's full" do
+     station = DockingStation.new
+     bike = Bike.new
+     station.dock(bike)
+     expect(station.bike).to eq bike
+   end
 
 end
