@@ -1,6 +1,12 @@
 require 'DockingStation'
 
 describe DockingStation do
+
+    it 'Allows user to set capacity instance variable' do
+      docking_station = DockingStation.new
+      expect (subject.instance_variable_set(:@capacity, capacity))
+    end
+
     describe '#release_bike' do
           it { is_expected.to respond_to :release_bike }
 
