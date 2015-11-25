@@ -9,12 +9,14 @@ class DockingStation
     @bike = nil
   end
 
+  def dock(bike)
+    raise "This station is full" if @bike
+    @bike = bike
+  end
+
   def release_bike
     raise "No bike available" unless @bike
     @bike
   end
 
-  def dock(bike)
-    @bike = bike
-  end
 end
