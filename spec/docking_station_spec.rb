@@ -10,4 +10,13 @@ describe DockingStation do
      expect(bike).to be_working
    end
 
+   it { is_expected.to respond_to(:dock).with(1).argument }
+
+   it "tells us whats in the docking station when it's empty" do
+     station = DockingStation.new
+     expect(station.bike).to eq nil
+   end
+#     expect(subject.dock(bike)).to eq bike
+#   end
+
 end
