@@ -9,7 +9,7 @@ class Bike
     @working
   end
 
-  def broken
+  def report
     @working = false
   end
 end
