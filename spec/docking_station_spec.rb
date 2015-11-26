@@ -55,6 +55,9 @@ describe DockingStation do
 
     describe '#report' do
       it { is_expected.to respond_to :report }
+      it 'reports a specific bike' do
+        expect(subject).to respond_to(:report).with(1).argument
+      end
 
     end
 end

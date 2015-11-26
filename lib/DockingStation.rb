@@ -20,9 +20,9 @@ class DockingStation
     docked << bike
   end
 
-  def report
+  def report(bike)
   end
-  
+
   private
 
   attr_accessor :docked
