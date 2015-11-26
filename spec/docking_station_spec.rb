@@ -33,10 +33,8 @@ describe DockingStation do
       end
 
       it 'does not release a broken bike' do
-      #  bike = double(:bike)
         allow(bike).to receive(:working?).and_return(false)
         station = DockingStation.new
-      #  station.report(bike)
         station.dock(bike)
         expect {station.release_bike}.to raise_error('Bike is broken!')
       end
@@ -63,20 +61,4 @@ describe DockingStation do
         expect { subject.dock double(:bike) }.to raise_error('Dock is already full')
       end
     end
-
-    # describe '#report' do
-    #   let(:bike) { double :bike }
-    #
-    #   # it { is_expected.to respond_to :report }
-    #
-    #   # it 'reports a specific bike' do
-    #   #   expect(subject).to respond_to(:report).with(1).argument
-    #   # end
-    #
-    #   # it 'changes the status of the bike to broken' do
-    #   #   allow(bike).to receive(:working?)
-    #   #   station = DockingStation.new
-    #   #   expect { station.report(bike) }.to change{bike.working?}.to(false)
-    #   end
-    # end
 end
