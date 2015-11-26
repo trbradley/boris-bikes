@@ -30,6 +30,18 @@ describe DockingStation do
       expect{subject.release_bike}.to raise_error("This bike is broken")
      end
 
+     it "keeps a broken bike in the dock" do
+      begin
+        bike = Bike.new
+        subject.dock(bike)
+        bike.report
+        subject.release_bike
+      rescue Exception
+
+        expect(subject.bikes).to eq [bike]
+      end
+     end
+
    end
 
    describe '#dock(bike)' do
