@@ -5,7 +5,7 @@ class DockingStation
 
   attr_accessor :capacity
 
-  def initialize(capacity)
+  def initialize(capacity=DEFAULT_CAPACITY)
     @docked = []
     @capacity = capacity
   end
@@ -19,7 +19,7 @@ class DockingStation
     fail 'Dock is already full' if full?
     docked << bike
   end
-
+  
   private
 
   attr_accessor :docked
