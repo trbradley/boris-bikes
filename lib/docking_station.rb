@@ -1,5 +1,3 @@
-# lib/docking_station.rb
-
 require_relative 'bike'
 
 class DockingStation
@@ -7,24 +5,24 @@ class DockingStation
 
   DEFAULT_CAPACITY = 20
 
-  def initialize(capacity=DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @bikes = []
     @capacity = capacity
   end
 
   def dock(bike)
-    raise "This station is full" if full?
+    fail 'This station is full' if full?
     @bikes << bike
   end
 
   def release_bike
-    raise "No bike available" if empty?
-    raise "This bike is broken" if !bikes.find { |bike| bike.working?}
-    bikes.delete(bikes.find { |bike| bike.working?})
-
+    fail 'No bike available' if empty?
+    fail 'No working bikes available' unless bikes.find(&:working?)
+    bikes.delete(bikes.find(&:working?))
   end
 
-private
+  private
+
   def full?
     @bikes.length >= capacity
   end
@@ -32,5 +30,4 @@ private
   def empty?
     @bikes.empty?
   end
-
 end
