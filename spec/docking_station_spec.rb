@@ -22,6 +22,14 @@ describe DockingStation do
      it "gives us an error message when the station is empty" do
        expect{subject.release_bike}.to raise_error("No bike available")
      end
+
+     it "give us an error message when trying to release a broken bike" do
+      bike = Bike.new
+      bike.report
+      subject.dock(bike)
+      expect{subject.release_bike}.to raise_error("This bike is broken")
+     end
+
    end
 
    describe '#dock(bike)' do
