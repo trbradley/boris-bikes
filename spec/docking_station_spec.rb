@@ -52,4 +52,9 @@ describe DockingStation do
         expect {subject.dock Bike.new}.to raise_error
       end
     end
+
+    describe '#report' do
+      it { is_expected.to respond_to :report }
+
+    end
 end

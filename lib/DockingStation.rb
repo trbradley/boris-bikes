@@ -19,6 +19,9 @@ class DockingStation
     fail 'Dock is already full' if full?
     docked << bike
   end
+
+  def report
+  end
   
   private
 
