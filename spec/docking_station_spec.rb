@@ -37,11 +37,25 @@ describe DockingStation do
         bike.report
         subject.release_bike
       rescue Exception
-
         expect(subject.bikes).to eq [bike]
       end
      end
 
+     it "gives me a bike if there is a working bike in the docking station" do
+      4.times do
+        bike = Bike.new
+        bike.report
+        subject.dock(bike)
+      end
+        goodbike = Bike.new
+        subject.dock(goodbike)
+      5.times do
+        bike = Bike.new
+        bike.report
+        subject.dock(bike)
+      end
+      expect(subject.release_bike).to eq goodbike
+     end
    end
 
    describe '#dock(bike)' do

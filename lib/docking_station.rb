@@ -19,8 +19,9 @@ class DockingStation
 
   def release_bike
     raise "No bike available" if empty?
-    raise "This bike is broken" if !@bikes.last.working?
-    @bikes.pop
+    raise "This bike is broken" if !bikes.find { |bike| bike.working?}
+    bikes.delete(bikes.find { |bike| bike.working?})
+
   end
 
 private
