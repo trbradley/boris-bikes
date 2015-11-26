@@ -30,27 +30,11 @@ describe DockingStation do
       expect { subject.release_bike }.to raise_error('No working bikes available')
     end
 
-    it 'keeps a broken bike in the dock' do
-      begin
-        bike = double(:bike, working?: false)
-        subject.dock(bike)
-        subject.release_bike
-      rescue StandardError
-        expect(subject.bikes).to eq [bike]
-      end
-    end
-
     it 'gives me a bike if there is a working bike in the docking station' do
-      4.times do
-        bike = double(:bike, working?: false)
-        subject.dock(bike)
-      end
       goodbike = double(:bike, working?: true)
       subject.dock(goodbike)
-      5.times do
-        bike = double(:bike, working?: false)
-        subject.dock(bike)
-      end
+      bike = double(:bike, working?: false)
+      subject.dock(bike)
       expect(subject.release_bike).to eq goodbike
     end
   end
@@ -59,16 +43,7 @@ describe DockingStation do
     it { is_expected.to respond_to(:dock).with(1).argument }
     it 'raises an error when the station is full' do
       subject.capacity.times { subject.dock(double(:bike)) }
-      expect { subject.dock(double(:bike)) }.to raise_error('This station is full')
-    end
-  end
-
-  describe '#bikes' do
-    it { is_expected.to respond_to(:bikes) }
-    it 'should return an array with the bikes in the docking station' do
-      array = []
-      2.times { bike = double(:bike); array << bike; subject.dock(bike) }
-      expect(subject.bikes).to match_array(array)
+      expect { subject.dock(double(:bike)) }.to raise_error('Docking station full')
     end
   end
 end
