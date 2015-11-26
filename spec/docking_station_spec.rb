@@ -58,6 +58,11 @@ describe DockingStation do
       it 'reports a specific bike' do
         expect(subject).to respond_to(:report).with(1).argument
       end
+      it 'changes the status of the bike to broken' do
+        station = DockingStation.new
+        bike = Bike.new
+        expect { station.report(bike) }.to change{bike.working?}.to(false)
+      end
 
     end
 end

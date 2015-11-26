@@ -21,6 +21,7 @@ class DockingStation
   end
 
   def report(bike)
+    bike.broken
   end
 
   private
