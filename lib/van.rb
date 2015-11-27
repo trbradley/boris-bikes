@@ -7,6 +7,9 @@ class Van
     bikes << bike
   end
 
+  def unload(bike)
+  end
+
   private
 
   attr_reader :bikes

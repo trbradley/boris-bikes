@@ -11,4 +11,8 @@ describe Van do
     end
   end
 
+  describe '#unload' do
+    it { is_expected.to respond_to(:unload).with(1).argument }
+  end
+
 end
