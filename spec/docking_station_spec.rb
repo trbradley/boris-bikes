@@ -3,11 +3,11 @@ require 'docking_station'
 describe DockingStation do
   describe '#initialize' do
     it 'creates a docking station with a default capacity' do
-      expect(subject.capacity).to eq subject.class::DEFAULT_CAPACITY
+      expect(subject.capacity).to eq described_class::DEFAULT_CAPACITY
     end
 
     it 'allows to set a capacity of 50' do
-      station = subject.class.new(50)
+      station = described_class.new(50)
       expect(station.capacity).to eq 50
     end
   end
