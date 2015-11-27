@@ -7,7 +7,8 @@ class Van
     bikes << bike
   end
 
-  def unload(bike)
+  def unload
+    bikes.pop
   end
 
   private

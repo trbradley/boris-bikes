@@ -12,7 +12,13 @@ describe Van do
   end
 
   describe '#unload' do
-    it { is_expected.to respond_to(:unload).with(1).argument }
+    it { is_expected.to respond_to(:unload) }
+
+    it 'unloads bike from van' do
+      bike = double(:bike)
+      subject.load(bike)
+      expect(subject.unload).to eq bike
+    end
   end
 
 end
