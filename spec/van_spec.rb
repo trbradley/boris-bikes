@@ -19,6 +19,10 @@ describe Van do
       subject.load(bike)
       expect(subject.unload).to eq bike
     end
+
+    it 'raises an error if van is empty' do
+      expect { subject.unload }.to raise_error 'Van is empty!'
+    end
   end
 
 end
