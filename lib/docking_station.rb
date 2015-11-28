@@ -17,10 +17,12 @@ class DockingStation
     bikes << bike
   end
 
-  def release_bike
-    fail 'No bike available' if empty?
-    fail 'No working bikes available' if broken_only?
-    bikes.delete(bikes.find(&:working?))
+  def release_working_bike
+    release_bike true
+  end
+
+  def release_broken_bike
+    release_bike false
   end
 
   private
@@ -37,5 +39,16 @@ class DockingStation
 
   def broken_only?
     !bikes.find(&:working?)
+  end
+
+  def working_only?
+    !bikes.find { |bike| !bike.working? }
+  end
+
+  def release_bike(status)
+    fail 'No bike available' if empty?
+    fail 'No working bikes available' if broken_only? && status
+    fail 'No broken bikes available' if working_only? && !status
+    status ? bikes.delete(bikes.find(&:working?)) : bikes.delete(bikes.find { |bike| !bike.working? })
   end
 end
